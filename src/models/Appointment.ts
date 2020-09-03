@@ -1,6 +1,6 @@
 import {uuid} from 'uuidv4';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm'
-import User from './users';
+import User from './User';
 
 
 /**
@@ -28,7 +28,7 @@ class Appointment {
   created_at: Date;
 
   @UpdateDateColumn()
-  updated_ate: Date;
+  updated_at: Date;
 
 };
 

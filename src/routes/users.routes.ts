@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import CreateUserService from '../services/CreateUserSevice';
+import { de } from 'date-fns/locale';
 
 const usersRoutes = Router();
 
@@ -14,6 +15,8 @@ usersRoutes.post('/', async (request, response) => {
     email,
     password,
   })
+
+  delete user.password
 
   return response.json(user)
  } catch (err) {

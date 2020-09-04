@@ -30,7 +30,7 @@ usersRoutes.post('/', async (request, response) => {
 usersRoutes.patch(
   '/avatar',
   ensureAuthenticated,
-  //upload.single('avatar'),
+  upload.single('avatar'),
   async (request, response) => {
   return response.json({ok: true})
 })

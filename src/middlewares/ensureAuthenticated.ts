@@ -3,6 +3,13 @@ import { Request, Response, NextFunction } from 'express'
 import { verify } from 'jsonwebtoken'
 
 import authConfig from '../config/auth'
+import { de } from 'date-fns/locale';
+
+interface TokenPayload {
+  iat: number;
+  exp: number;
+  sub: string;
+}
 
 export default function ensureAuthenticated(
   request: Request,
@@ -20,12 +27,16 @@ export default function ensureAuthenticated(
   // Bearer sdkanfj
   // Dividindo o token
 
-  const [, token] = authHeader.split('')
+  const [, token] = authHeader.split(' ')
 
   try {
     const decoded = verify(token, authConfig.jwt.secret);
 
-    console.log(decoded)
+    const { sub } = decoded as TokenPayload
+
+    request.user = {
+      id: sub,
+    }
 
     return next()
   } catch {

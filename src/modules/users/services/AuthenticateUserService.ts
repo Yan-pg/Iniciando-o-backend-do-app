@@ -5,7 +5,7 @@ import AppError from '@shared/errors/AppError';
 
 import { inject, injectable } from 'tsyringe';
 import User from '../infra/typeorm/entities/User';
-import IUsersReposuitory from '../repositories/IUsersRepository';
+import IUsersRepository from '../repositories/IUsersRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 interface Request {
@@ -22,7 +22,7 @@ interface IResponse {
 class AuthenticateUserService {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersReposuitory,
+    private usersRepository: IUsersRepository,
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,

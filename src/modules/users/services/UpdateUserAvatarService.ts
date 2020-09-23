@@ -1,11 +1,8 @@
-import uploadConfig from '@config/upload';
-import path from 'path';
-import fs from 'fs';
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStoregeProvider';
 import User from '../infra/typeorm/entities/User';
-import IUsersReposuitory from '../repositories/IUsersRepository';
+import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IRequest {
   user_id: string;
@@ -16,7 +13,7 @@ interface IRequest {
 class updateUserAvatarService {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersReposuitory,
+    private usersRepository: IUsersRepository,
 
     @inject('StorageProvider')
     private storageProvider: IStorageProvider,

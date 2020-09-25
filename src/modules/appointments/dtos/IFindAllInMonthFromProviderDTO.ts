@@ -2,8 +2,8 @@
  QUAL O FORMATO DOS DADOS PARA CRIAR UM APPOINTEMENTE
  * QUANTO EU FOR CRIAR O APPIMENTES QUAIS DADOS EU VOU UTILIZAR
  */
-export default interface ICreateApppointmentDTO {
+export default interface IFindAllInMonthFromProviderDTO {
   provider_id: string;
-  user_id: string;
-  date: Date;
+  month: number;
+  year: number;
 }

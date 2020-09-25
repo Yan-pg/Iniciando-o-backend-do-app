@@ -6,7 +6,7 @@ import ListProvidersService from '@modules/appointments/services/ListProvidersSe
 export default class ProviderControllers {
   // todo controller vai retonar response
   public async index(request: Request, response: Response): Promise<Response> {
-    const { user_id } = request;
+    const user_id = request.user.id;
 
     const listProviders = container.resolve(ListProvidersService);
 

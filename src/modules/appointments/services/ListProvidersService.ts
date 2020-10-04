@@ -1,6 +1,8 @@
 import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import AppError from '@shared/errors/AppError';
+// import AppError from '@shared/errors/AppError';
+
+import IChacheProvider from '@shared/container/providers/CacheProvider/models/IChacheProvider';
 
 import { inject, injectable } from 'tsyringe';
 
@@ -13,18 +15,27 @@ class ListProvidersService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+
+    @inject('ChacheProvider')
+    private chacheProvider: IChacheProvider,
   ) {}
 
   public async execute({ user_id }: IRequest): Promise<User[]> {
-    const user = await this.usersRepository.findAllProvdiders({
-      except_user_id: user_id,
-    });
+    let users = await this.chacheProvider.recover<User[]>(
+      `providers-list:${user_id}`,
+    );
 
-    if (!user) {
-      throw new AppError('User not found');
+    if (!users) {
+      users = await this.usersRepository.findAllProvdiders({
+        except_user_id: user_id,
+      });
     }
 
-    return user;
+    console.log('A query no banco foi feita');
+
+    await this.chacheProvider.save(`providers-list:${user_id}`, users);
+
+    return users;
   }
 }
 

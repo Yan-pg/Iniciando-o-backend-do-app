@@ -1,3 +1,4 @@
+import IChacheProvider from '@shared/container/providers/CacheProvider/models/IChacheProvider';
 import AppError from '@shared/errors/AppError';
 
 import { inject, injectable } from 'tsyringe';
@@ -18,6 +19,9 @@ class CreateUserService {
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
+
+    @inject('ChacheProvider')
+    private chacheProvider: IChacheProvider,
   ) {}
 
   public async execute({ name, email, password }: IRequest): Promise<User> {
@@ -34,6 +38,9 @@ class CreateUserService {
       email,
       password: hashedPassword,
     });
+
+    await this.chacheProvider.invalidatePrefix('providers-list');
+
     return user;
   }
 }

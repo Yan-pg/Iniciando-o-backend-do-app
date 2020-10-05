@@ -39,7 +39,7 @@ class ListProviderAppointmentsService {
       },
     );
 
-    // await this.chacheProvider.save('asd', 'asd');
+    await this.chacheProvider.save('asd', 'asd');
 
     return appointment;
   }

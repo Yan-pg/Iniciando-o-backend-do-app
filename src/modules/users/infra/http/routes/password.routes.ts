@@ -19,12 +19,13 @@ passwordRouter.post(
 );
 passwordRouter.post(
   '/reset',
-  celebrate({
-    [Segments.BODY]: {
-      password: Joi.string().required(),
-      password_confirmation: Joi.string().required().valid(Joi.ref('password')),
-    },
-  }),
+  // celebrate({
+  //   [Segments.BODY]: {
+  //     password: Joi.string().required(),
+  //     password_confirmation: Joi.string().required().valid(Joi.ref('password')),
+  //     token: Joi.string().required(),
+  //   },
+  // }),
   resetPasswordController.create,
 );
 

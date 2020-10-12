@@ -31,8 +31,6 @@ class ListProvidersService {
       });
     }
 
-    console.log('A query no banco foi feita');
-
     await this.chacheProvider.save(`providers-list:${user_id}`, users);
 
     return users;

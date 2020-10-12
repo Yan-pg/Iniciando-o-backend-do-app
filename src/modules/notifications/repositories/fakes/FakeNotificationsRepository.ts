@@ -1,4 +1,4 @@
-import { getMongoRepository, MongoRepository } from 'typeorm';
+// import { getMongoRepository, MongoRepository } from 'typeorm';
 
 import ICreateNotificationDTO from '@modules/notifications/dtos/ICreateNotificationDTO';
 
@@ -10,10 +10,6 @@ import Notification from '../../infra/typeorm/schemas/Notifications';
 // Data Transfer Object
 class NotificationsRepository implements INotificationsRepository {
   public notifications: Notification[] = [];
-
-  constructor() {
-    this.ormRepository = getMongoRepository(Notification, 'mongo');
-  }
 
   public async create({
     content,

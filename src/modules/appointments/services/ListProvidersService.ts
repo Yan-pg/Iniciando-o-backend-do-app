@@ -3,6 +3,7 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 // import AppError from '@shared/errors/AppError';
 
 import IChacheProvider from '@shared/container/providers/CacheProvider/models/IChacheProvider';
+import { classToClass } from 'class-transformer';
 
 import { inject, injectable } from 'tsyringe';
 
@@ -31,7 +32,7 @@ class ListProvidersService {
       });
     }
 
-    await this.chacheProvider.save(`providers-list:${user_id}`, users);
+    await this.chacheProvider.save(`providers-list:${user_id}`, classToClass(users));
 
     return users;
   }

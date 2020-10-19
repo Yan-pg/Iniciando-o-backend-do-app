@@ -32,7 +32,10 @@ class ListProvidersService {
       });
     }
 
-    await this.chacheProvider.save(`providers-list:${user_id}`, classToClass(users));
+    await this.chacheProvider.save(
+      `providers-list:${user_id}`,
+      classToClass(users),
+    );
 
     return users;
   }

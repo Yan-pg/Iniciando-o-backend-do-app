@@ -48,8 +48,6 @@ class AuthenticateUserService {
     }
 
     // Usuário autenticado
-
-    //
     const { secret, expiresIn } = authConfig.jwt;
 
     const token = sign({}, secret, {
